@@ -4,7 +4,6 @@ import re
 from lxml import etree
 from io import StringIO
 
-
 class WarfishUser:
     def __init__(self, username, password=None):
         self.base_url = 'http://warfish.net/'
@@ -139,6 +138,7 @@ class WarfishUser:
             game_ids = self.tree.xpath(game_id_xpath)
             game_id_full = [re.search('gid=(.+)', game_id).group(1) for game_id in game_ids]
 
+            game_stage_xpath = '/html/body/center/table[3]/tbody/tr[2]/td/table[2]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[8]/nobr/text()'
             output.extend(game_id_full)
 
         self.all_games_ids = output
